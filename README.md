@@ -44,6 +44,6 @@ The second `-v` is passed to `fluentd` to tell it to be verbose
 
 
 # LICENSE 
-Apache License 2.0
+## [Apache License 2.0](https://github.ibm.com/zECO/fluentd-s390x/blob/master/LICENSE)
 
 A permissive license whose main conditions require preservation of copyright and license notices. Contributors provide an express grant of patent rights. Licensed works, modifications, and larger works may be distributed under different terms and without source code.
