@@ -17,9 +17,11 @@ Version 1.10 built on alpine.
 
 
 To create endpoint that collects logs on your host just run:
+**Note that you will need to use docker volumes on ZCX as bind mounts via the filesystem are not permitted**
 
 ```bash
-docker run -d -p 24224:24224 -p 24224:24224/udp -v /data:/fluentd/log fluent/fluentd:v1.3-debian-1
+docker volume create <your_vol>
+docker run -d -p 24224:24224 -p 24224:24224/udp -v <your_vol>:/fluentd/log quay.io/ibmz/fluentd:1.10
 ```
 
 Default configurations are to:
@@ -27,7 +29,7 @@ Default configurations are to:
 - listen port `24224` for Fluentd forward protocol
 - store logs with tag `docker.**` into `/fluentd/log/docker.*.log`
   (and symlink `docker.log`)
-- store all other logs into `/fluentd/log/data.*.log` (and symlink `data.log`)
+- store all other logs into `/fluentd/log/data.*.log`.
 
 ## Providing your own configuration file and additional options
 
@@ -35,46 +37,11 @@ Default configurations are to:
 
 For example, to provide a bespoke config and make `fluentd` verbose, then:
 
-`docker run -ti --rm -v /path/to/dir:/fluentd/etc fluentd -c /fluentd/etc/<conf> -v`
+`docker run -ti --rm -v <your_vol>:/fluentd/etc quay.io/ibmz/fluentd:1.10 -c /fluentd/etc/<conf> -v`
 
-The first `-v` tells Docker to share '/path/to/dir' as a volume and mount it at /fluentd/etc
+The first `-v` tells Docker to share your docker volume and mount it at /fluentd/etc
 The `-c` after the container name (fluentd) tells `fluentd` where to find the config file
 The second `-v` is passed to `fluentd` to tell it to be verbose
 
-## Change running user
-
-Use `-u` option with `docker run`.
-
-`docker run -p 24224:24224 -u foo -v ...`
-
-
-### Test it
-
-Once the image is built, it's ready to run.
-Following commands run Fluentd sharing `./log` directory with the host machine:
-
-```bash
-mkdir -p log
-docker run -it --rm --name custom-docker-fluent-logger -v $(pwd)/log:/fluentd/log custom-fluentd:latest
-```
-
-Open another terminal and type following command to inspect IP address.
-Fluentd is running on this IP address:
-
-```bash
-docker inspect -f '{{.NetworkSettings.IPAddress}}' custom-docker-fluent-logger
-```
-
-Let's try to use another docker container to send its logs to Fluentd.
-
-```bash
-docker run --log-driver=fluentd --log-opt tag="docker.{{.ID}}" --log-opt fluentd-address=FLUENTD.ADD.RE.SS:24224 python:alpine echo Hello
-# and force flush buffered logs
-docker kill -s USR1 custom-docker-fluent-logger
-```
-(replace `FLUENTD.ADD.RE.SS` with actual IP address you inspected at
-the previous step)
-
-You will see some logs sent to Fluentd.
 
 #LICENSE HERE
