@@ -16,8 +16,8 @@ collection and consumption for a better use and understanding of data.
 Version 1.10 built on alpine.
 
 
-To create endpoint that collects logs on your host just run:
-**Note that you will need to use docker volumes on ZCX as bind mounts via the filesystem are not permitted**
+To create endpoint that collects logs on your host just run: <br />
+**Note that you will need to use docker volumes on ZCX as bind mounts to the filesystem are not permitted**
 
 ```bash
 docker volume create <your_vol>
