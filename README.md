@@ -1,12 +1,5 @@
 Fluentd Docker Image
 ====================
-
-[![Build Status](https://travis-ci.org/fluent/fluentd-docker-image.svg?branch=master)](https://travis-ci.org/fluent/fluentd-docker-image)
-[![Docker Stars](https://img.shields.io/docker/stars/fluent/fluentd.svg)](https://hub.docker.com/r/fluent/fluentd)
-[![Docker Pulls](https://img.shields.io/docker/pulls/fluent/fluentd.svg)](https://hub.docker.com/r/fluent/fluentd)
-[![ImageLayers Size](https://img.shields.io/imagelayers/image-size/fluent/fluentd/latest.svg)](https://hub.docker.com/r/fluent/fluentd)
-[![ImageLayers Layers](https://img.shields.io/imagelayers/layers/fluent/fluentd/latest.svg)](https://hub.docker.com/r/fluent/fluentd)
-
 ## What is Fluentd?
 
 Fluentd is an open source data collector, which lets you unify the data
@@ -17,13 +10,6 @@ collection and consumption for a better use and understanding of data.
 ![Fluentd Logo](https://www.fluentd.org/assets/img/miscellany/fluentd-logo.png)
 
 ## Supported tags and respective `Dockerfile` links
-
-## The detail of image tag
-
-This image is based on the popular [Alpine Linux project][1], available in
-[the alpine official image][2], and Debian images.
-
-### For current images
 
 #### `1.10`
 
