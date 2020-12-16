@@ -6,7 +6,7 @@ env:
     - TEST_DIR="$PWD/"
     - TEST_SCRIPT="test.sh"
     - BUILD_DIR="$PWD/v1.10/alpine/"
-    - REPO="quay.io/ibmz/fluentd"
+    - REPO="quay.io/ibm/fluentd"
     - TAG="$REPO:1.10"
 before_script: 
   - cd $BUILD_DIR && chmod +x *
