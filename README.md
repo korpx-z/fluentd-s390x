@@ -1,6 +1,11 @@
-Fluentd Docker Image
-====================
-## What is Fluentd?
+### This image is built to run on s390x architecture.
+-    [build source](https://github.com/korpx-z/fluentd-s390x/tree/master)
+-    [original source code](https://github.com/fluent/fluentd-docker-image)
+
+### Versions
+1.11
+
+## Fluentd
 
 Fluentd is an open source data collector, which lets you unify the data
 collection and consumption for a better use and understanding of data.
@@ -21,7 +26,7 @@ To create endpoint that collects logs on your host just run: <br />
 
 ```bash
 docker volume create <your_vol>
-docker run -d -p 24224:24224 -p 24224:24224/udp -v <your_vol>:/fluentd/log quay.io/ibmz/fluentd:1.10
+docker run -d -p 24224:24224 -p 24224:24224/udp -v <your_vol>:/fluentd/log quay.io/ibm/fluentd:1.10
 ```
 
 Default configurations are to:
@@ -43,7 +48,7 @@ The `-c` after the container name (fluentd) tells `fluentd` where to find the co
 The second `-v` is passed to `fluentd` to tell it to be verbose
 
 
-# LICENSE 
+# LICENSE
 ## [Apache License 2.0](https://github.ibm.com/zECO/fluentd-s390x/blob/master/LICENSE)
 
 A permissive license whose main conditions require preservation of copyright and license notices. Contributors provide an express grant of patent rights. Licensed works, modifications, and larger works may be distributed under different terms and without source code.
